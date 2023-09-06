@@ -1,0 +1,236 @@
+<html>
+
+<head>
+   <link rel="stylesheet" href="css/Index.css">
+  <title>Courseum</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="sides">
+      <a href="#" class="logo">Courseum</a>
+    </div>
+    <div class="info">
+      <h1>WELCOME TO COURSEUM</h1><br>
+      <div class="waviy">
+        <span style="--i:1">B</span>
+        <span style="--i:2">E</span>
+        <span style="--i:3">S</span>
+        <span style="--i:4">T</span>
+        &nbsp;
+        <span style="--i:5">W</span>
+        <span style="--i:6">E</span>
+        <span style="--i:7">B</span>
+        <span style="--i:8">S</span>
+        <span style="--i:1">I</span>
+        <span style="--i:2">T</span>
+        <span style="--i:3">E</span>
+        &nbsp;
+        <span style="--i:4">F</span>
+        <span style="--i:1">O</span>
+        <span style="--i:2">R</span>
+        &nbsp;
+        <span style="--i:3">C</span>
+        <span style="--i:4">O</span>
+        <span style="--i:1">U</span>
+        <span style="--i:2">R</span>
+        <span style="--i:3">S</span>
+        <span style="--i:4">E</span>
+        <span style="--i:1">S</span>
+      </div>
+    </div>
+  </div>
+  <section class="content">
+
+    <div>
+      <h1>Choose your favourite channel: </h1>
+      <select id="channellist" type="list-box" name="select"></select>
+    </div>
+    <div>
+      <h1>Choose your favourite domain: </h1>
+      <select id="domainlist" type="list-box"></select>
+    </div>
+
+    <div>
+      <button type="submit" value="submit" id="search_button" onclick="findvideo()">Search</button>
+    </div>
+
+    <div>
+      <input id="p" type="hidden" />
+      <input id="p2" type="hidden" />
+    </div>
+    <h1>Showing results of "<span id="chaname"></span>" for course "<span id="coursename"></span>":</h1>
+    <div>
+
+    </div>
+
+    <div name=FRAME2div id=FRAME2div>
+    </div>
+
+    <span>
+
+    </span>
+
+    <!--Feedback-->
+    <h1>Please give your feedback:</h1>
+    <div class="container">
+      <form action="/Feedback_status" method="POST">
+        <label for="fname">FirstName</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+        <label for="lname">LastName</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+        <label for="country">Country</label>
+        <select id="country" name="Country">
+          <option value="India">India</option>
+          <option value="China">Canada</option>
+          <option value="USA">USA</option>
+        </select>
+
+        <label for="subject">Review</label>
+        <textarea id="subject" name="review" placeholder="Write something.." style="height:200px"></textarea>
+
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <!--Footer Starts from here-->
+
+  </section>
+
+
+  <script>
+    const clist = [
+      { name: 'Abdul bari' },
+      { name: 'Gate Smashers' },
+      { name: 'CodeWithHarry' }
+    ];
+    const channellist = document.getElementById('channellist');
+    const p = document.getElementById('p');
+    clist.forEach(entry => {
+      const option = document.createElement('option');
+      option.text = entry.name;
+      channellist.add(option)
+    });
+
+    channellist.addEventListener('change', function () {
+      const selectedchannel = channellist.options[channellist.selectedIndex].text;
+      const selectedEntry = clist.find(entry =>
+        entry.name === selectedchannel);
+      if (selectedEntry) {
+        p.value = selectedEntry.name;
+      }
+      else {
+        p.value = 'Not Found';
+      }
+    });
+
+    const dlist = [
+      { name: 'C Programming' },
+      { name: 'DSA' },
+      { name: 'Algorithms' }
+    ];
+    const domainlist = document.getElementById("domainlist");
+    const p2 = document.getElementById("p2");
+    dlist.forEach(entry => {
+      const option = document.createElement('option');
+      option.text = entry.name;
+      domainlist.add(option)
+    });
+
+
+    domainlist.addEventListener('change', function () {
+      const selecteddomain = domainlist.options[domainlist.selectedIndex].text;
+      const selectedEntry2 = dlist.find(entry =>
+        entry.name === selecteddomain);
+      if (selectedEntry2) {
+        p2.value = selectedEntry2.name;
+      }
+      else {
+        p2.value = 'Not Found';
+      }
+    });
+
+    function findvideo() {
+      let channel_name = p.value;
+      let course_name = p2.value;
+      document.getElementById("chaname").innerHTML = channel_name;
+      document.getElementById("coursename").innerHTML = course_name;
+      if (channel_name === 'Abdul bari' && course_name==='C Programming') {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe width="350" height="350" src="https://www.youtube.com/embed/1xz7OxASXUc" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(channel_name==='Abdul bari' && course_name==='DSA')
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(channel_name==='Abdul bari' && course_name==='Algorithms')
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/lj3E24nnPjI" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(channel_name==='Gate Smashers' && course_name==='C Programming')
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/ec-Cd4jKFWc" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(channel_name==='Gate Smashers' && course_name==='DSA')
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/3cU__spdMIw" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(channel_name==='Gate Smashers' && course_name==='Algorithms')
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/u8JZ9gU5o4g" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(channel_name==='CodeWithHarry' && course_name==='C Programming')
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/7Dh73z3icd8" frameborder="0" allowfullscreen></iframe>';
+      }
+      else if(channel_name==='CodeWithHarry' && course_name==='DSA')
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/5_5oE5lgrhw" frameborder="0" allowfullscreen></iframe>';
+      }
+      else
+      {
+        document.getElementById("FRAME2div").innerHTML = '<iframe id=IFRAME2 name=IFRAME2></iframe>';
+        doc = frames["IFRAME2"].document;
+        doc.open();
+        doc.close();
+        doc.body.innerHTML='<iframe  width="350" height="350" src="https://www.youtube.com/embed/ByLlEk7zmyw" frameborder="0" allowfullscreen></iframe>';
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
